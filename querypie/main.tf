@@ -24,3 +24,10 @@ module "instance" {
   alw_qp_sg_id = [module.sg.allow_querypie_sg_id]
   alw_ssh_sg_id = [module.sg.allow_ssh_sg_id]
 }
+
+module "alb" {
+  source = "./modules/alb"
+  pub_sbn_id = module.vpc.pub_sbn_ids
+  alw_qp_sg_id = [module.sg.allow_querypie_sg_id]
+  vpc_id = module.vpc.vpc_id
+}

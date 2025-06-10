@@ -6,6 +6,9 @@ resource "aws_instance" "bastion_instance" {
   key_name      = "qpkey"
   subnet_id     = var.pub_sbn_id
   vpc_security_group_ids = var.alw_qp_sg_id
+  tag = {
+	name = qp_bst_svr
+  }
 }
 
 #bastion host eip
@@ -23,5 +26,8 @@ resource "aws_instance" "qp_instance" {
   key_name      = "qpkey"
   subnet_id     = var.priv_sbn_id
   vpc_security_group_ids = var.alw_ssh_sg_id
+  tag = {
+	name = querypie_svr_justin
+  }
 }
 

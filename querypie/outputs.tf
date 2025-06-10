@@ -21,6 +21,11 @@ output "private_subnet_ids" {
   value = module.vpc.priv_sbn_ids
 }
 
+
+output "alb_id" {
+  value = module.alb.alb_id
+}
+
 /*
 # region 출력
 output "aws_region" {
