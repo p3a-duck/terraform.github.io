@@ -1,0 +1,26 @@
+module "vpc" {
+  source = "./modules/vpc"
+  cidr_numeral       = var.cidr_numeral
+  aws_region         = var.aws_region
+  vpc_name           = var.vpc_name
+  availability_zones = var.availability_zones
+  cidr_numeral_public  = var.cidr_numeral_public
+  cidr_numeral_private = var.cidr_numeral_private
+}
+
+
+module "sg" {
+  source = "./modules/sg"
+  vpc_id = module.vpc.vpc_id
+}
+
+
+module "instance" {
+  source = "./modules/ec2"
+  bastion_eip_name = var.bastion_eip_name
+  aws_ami = var.aws_ami
+  pub_sbn_id = module.vpc.pub_sbn_ids[0]
+  priv_sbn_id = module.vpc.priv_sbn_ids[0]
+  alw_qp_sg_id = [module.sg.allow_querypie_sg_id]
+  alw_ssh_sg_id = [module.sg.allow_ssh_sg_id]
+}
