@@ -26,6 +26,14 @@ output "alb_id" {
   value = module.alb.alb_id
 }
 
+output "bastion_eip_id" {
+  value = module.instance.bastion_eip_id
+}
+
+output "bastion_ec2_id" {
+  value = module.instance.bastion_ec2_id
+}
+
 /*
 # region 출력
 output "aws_region" {

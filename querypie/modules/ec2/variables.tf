@@ -2,7 +2,7 @@ variable "region_apse1" {
   default = "ap-souteast-1"
 }
 
-variable "bastion_eip_name" {
+variable "bastion_eip_id" {
   description = "Name tag for the EIP"
   type        = string
 }
