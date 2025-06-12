@@ -9,9 +9,9 @@ variable "vpc_id" {
   default     = "aws_vpc.main.id"
 }
 
-variable "cidr_numeral" {
-  description = "The VPC CIDR numeral (10.x.0.0/16)"
-}
+#variable "cidr_numeral" {
+#  description = "The VPC CIDR numeral (10.x.0.0/16)"
+#}
 
 variable "vpc_name" {
   description = "This is querypie vpc name"

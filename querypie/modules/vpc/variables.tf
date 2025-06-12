@@ -1,5 +1,6 @@
 variable  "cidr_numeral" {
     description = "The VPC CIDR numeral (10.x.0.0/16)"
+    default = "0"
 }
 
 variable  "aws_region" {

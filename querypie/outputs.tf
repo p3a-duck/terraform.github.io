@@ -34,6 +34,10 @@ output "bastion_ec2_id" {
   value = module.instance.bastion_ec2_id
 }
 
+output "cidr_block" {
+  value = module.vpc.cidr_block
+}
+
 /*
 # region 출력
 output "aws_region" {

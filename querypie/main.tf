@@ -1,6 +1,6 @@
 module "vpc" {
   source = "./modules/vpc"
-  cidr_numeral       = var.cidr_numeral
+#  cidr_numeral       = var.cidr_numeral
   aws_region         = var.aws_region
   vpc_name           = var.vpc_name
   availability_zones = var.availability_zones
