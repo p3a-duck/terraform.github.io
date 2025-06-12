@@ -7,7 +7,7 @@ resource "aws_instance" "bastion_instance" {
   subnet_id     = var.pub_sbn_id
   vpc_security_group_ids = var.alw_qp_sg_id
   tags = {
-	name = "qp_bst_svr"
+	name = "qp_bst_svr_justin"
   }
 }
 
@@ -15,7 +15,7 @@ resource "aws_instance" "bastion_instance" {
 resource "aws_eip" "bastion_eip" {
   domain = "vpc"
   tags = {
-    name = var.bastion_eip_id
+    name = "bst_eip_justin"
   }
 }
 
@@ -33,7 +33,7 @@ resource "aws_instance" "qp_instance" {
   subnet_id     = var.priv_sbn_id
   vpc_security_group_ids = var.alw_ssh_sg_id
   tags = {
-	name = "querypie_svr_justin"
+	name = "qp_svr_justin"
   }
 }
 
