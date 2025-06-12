@@ -6,14 +6,23 @@ resource "aws_instance" "bastion_instance" {
   key_name      = "qpkey"
   subnet_id     = var.pub_sbn_id
   vpc_security_group_ids = var.alw_qp_sg_id
+  tags = {
+	name = "qp_bst_svr_justin"
+  }
 }
 
 #bastion host eip
 resource "aws_eip" "bastion_eip" {
   domain = "vpc"
   tags = {
-    name = var.bastion_eip_name
+    name = "bst_eip_justin"
   }
+}
+
+#eip associaction bastion host
+resource "aws_eip_association" "bastion_eip_association" {
+  instance_id   = aws_instance.bastion_instance.id
+  allocation_id = aws_eip.bastion_eip.id
 }
 
 #querypie ec2
@@ -23,5 +32,8 @@ resource "aws_instance" "qp_instance" {
   key_name      = "qpkey"
   subnet_id     = var.priv_sbn_id
   vpc_security_group_ids = var.alw_ssh_sg_id
+  tags = {
+	name = "qp_svr_justin"
+  }
 }
 

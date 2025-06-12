@@ -17,10 +17,17 @@ module "sg" {
 
 module "instance" {
   source = "./modules/ec2"
-  bastion_eip_name = var.bastion_eip_name
+  bastion_eip_id = var.bastion_eip_id
   aws_ami = var.aws_ami
   pub_sbn_id = module.vpc.pub_sbn_ids[0]
   priv_sbn_id = module.vpc.priv_sbn_ids[0]
   alw_qp_sg_id = [module.sg.allow_querypie_sg_id]
   alw_ssh_sg_id = [module.sg.allow_ssh_sg_id]
+}
+
+module "alb" {
+  source = "./modules/alb"
+  pub_sbn_id = module.vpc.pub_sbn_ids
+  alw_qp_sg_id = [module.sg.allow_querypie_sg_id]
+  vpc_id = module.vpc.vpc_id
 }

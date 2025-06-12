@@ -49,7 +49,7 @@ variable "cidr_numeral_public" {
 }
 
 #EC2
-variable "bastion_eip_name" {
+variable "bastion_eip_id" {
   description = "Name tag for the EIP"
   type        = string
   default     = "querypie_eip_justin"
