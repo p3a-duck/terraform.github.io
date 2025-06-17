@@ -15,7 +15,7 @@ variable "vpc_id" {
 
 variable "vpc_name" {
   description = "This is querypie vpc name"
-  default     = "querypie"
+  default     = "querypie_apse1_vpc"
 }
 
 

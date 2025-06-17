@@ -6,3 +6,6 @@ output "bastion_ec2_id" {
   value = aws_instance.bastion_instance.id
 }
 
+output "qp_instance_id" {
+  value = aws_instance.qp_instance.id
+}

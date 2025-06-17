@@ -29,3 +29,11 @@ variable "alw_ssh_sg_id" {
   type = list(string)
   description = "Open ssh port"
 }
+
+variable "ec2_profile_name" {
+  type = string
+}
+
+variable "bastion_profile_name" {
+  type = string
+}

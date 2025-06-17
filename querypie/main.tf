@@ -8,6 +8,9 @@ module "vpc" {
   cidr_numeral_private = var.cidr_numeral_private
 }
 
+module "iam" {
+  source = "./modules/iam"
+}
 
 module "sg" {
   source = "./modules/sg"
@@ -23,6 +26,8 @@ module "instance" {
   priv_sbn_id = module.vpc.priv_sbn_ids[0]
   alw_qp_sg_id = [module.sg.allow_querypie_sg_id]
   alw_ssh_sg_id = [module.sg.allow_ssh_sg_id]
+  ec2_profile_name = module.iam.querypie_profile_name
+  bastion_profile_name = module.iam.bastion_profile_name
 }
 
 module "alb" {
@@ -30,4 +35,5 @@ module "alb" {
   pub_sbn_id = module.vpc.pub_sbn_ids
   alw_qp_sg_id = [module.sg.allow_querypie_sg_id]
   vpc_id = module.vpc.vpc_id
+  target_id = module.instance.qp_instance_id
 }

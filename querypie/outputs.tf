@@ -38,6 +38,10 @@ output "cidr_block" {
   value = module.vpc.cidr_block
 }
 
+output "qp_id" {
+  value = module.instance.qp_instance_id
+}
+
 /*
 # region 출력
 output "aws_region" {
