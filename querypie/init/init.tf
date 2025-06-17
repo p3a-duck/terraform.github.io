@@ -16,6 +16,7 @@ resource "aws_s3_bucket_versioning" "tfstate_versioning" {
    # depends_on = [aws_s3_bucket.tfstate]
 }
 
+/*
 # DynamoDB for terraform state lock
 resource "aws_dynamodb_table" "terraform_state_lock" {
   name           = "terraform_lock"
@@ -26,4 +27,4 @@ resource "aws_dynamodb_table" "terraform_state_lock" {
     name = "LockID"
     type = "S"
   }
-}
+}*/
