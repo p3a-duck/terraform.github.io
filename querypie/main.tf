@@ -1,3 +1,4 @@
+# vpc module
 module "vpc" {
   source = "./modules/vpc"
 #  cidr_numeral       = var.cidr_numeral
@@ -8,6 +9,7 @@ module "vpc" {
   cidr_numeral_private = var.cidr_numeral_private
 }
 
+# iam module
 module "iam" {
   source = "./modules/iam"
 }
@@ -17,7 +19,7 @@ module "sg" {
   vpc_id = module.vpc.vpc_id
 }
 
-
+# instance module
 module "instance" {
   source = "./modules/ec2"
   bastion_eip_id = var.bastion_eip_id
@@ -30,6 +32,7 @@ module "instance" {
   bastion_profile_name = module.iam.bastion_profile_name
 }
 
+# alb module
 module "alb" {
   source = "./modules/alb"
   pub_sbn_id = module.vpc.pub_sbn_ids
