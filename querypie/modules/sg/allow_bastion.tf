@@ -1,6 +1,6 @@
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_bastion"
-  description = "Allow SSH access to the bastion server"
+  description = "Allow SSH & SSM access to the bastion server"
   vpc_id      = var.vpc_id
   
   ingress {
