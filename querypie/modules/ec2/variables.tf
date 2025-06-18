@@ -1,5 +1,5 @@
 variable "region_apse1" {
-  default = "ap-souteast-1"
+  default = "ap-southeast-1"
 }
 
 variable "bastion_eip_id" {
