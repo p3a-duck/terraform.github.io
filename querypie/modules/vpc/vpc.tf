@@ -79,7 +79,7 @@ resource "aws_route_table" "private" {
 		}
 }
 
-/*
+
 #add private route to igw  임시
 resource "aws_route" "private_igw" {
 		route_table_id	= aws_route_table.private.id
@@ -87,7 +87,7 @@ resource "aws_route" "private_igw" {
 		gateway_id = aws_internet_gateway.igw.id
 
 }
-*/
+
 
 #craete priv route_table_association
 resource "aws_route_table_association" "private" {

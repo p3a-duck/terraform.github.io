@@ -10,8 +10,22 @@ resource "aws_instance" "bastion_instance" {
 	Name = "qp_bst_svr_justin"
   }
   iam_instance_profile   = var.bastion_profile_name
-}
+  user_data = <<EOF
+  #!/bin/bash
+  sudo yum install -y squid -y
+  
+  cat > /etc/squid/squid.conf <<EOL
+  acl localnet src 10.0.0.0/8
+  http_access allow localnet
+  http_port 3128
+  EOL
+  
+  sudo systemctl enable squid
+  sudo systemctl restart squid
+  EOF
 
+
+}
 #bastion host eip
 resource "aws_eip" "bastion_eip" {
   domain = "vpc"
@@ -42,5 +56,21 @@ resource "aws_instance" "qp_instance" {
     volume_type = "gp3"     # 일반 SSD (필요 시 gp3 등으로 변경 가능)
     delete_on_termination = true
   }
+  user_data = templatefile("${path.module}/user_data.sh.tpl" , {bastion_ip = aws_instance.bastion_instance.private_ip
+  })
+
+  /* #!/bin/bash  
+  sudo export http_proxy=http://${aws_instance.bastion_instance.private_ip}:3128
+  sudo export https_proxy=http://${aws_instance.bastion_instance.private_ip}:3128
+  sudo echo "proxy=http://${aws_instance.bastion_instance.private_ip}:3128" | sudo tee -a /etc/dnf/dnf.conf
+  sudo dnf install -y docker
+  sudo mkdir -p /etc/systemd/system/docker.service.d
+  sudo tee /etc/systemd/system/docker.service.d/http-proxy.conf > /dev/null <<EOF
+  [Service]
+  Environment="HTTP_PROXY=http://10.0.83.91:3128/"
+  Environment="HTTPS_PROXY=http://10.0.83.91:3128/"
+  Environment="NO_PROXY=localhost,127.0.0.1"
+  EOF 
+ */
 }
 
