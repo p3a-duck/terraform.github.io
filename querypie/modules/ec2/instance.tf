@@ -10,19 +10,22 @@ resource "aws_instance" "bastion_instance" {
 	Name = "qp_bst_svr_justin"
   }
   iam_instance_profile   = var.bastion_profile_name
+
+#Proxy(Squid) 설치 및 설정
   user_data = <<EOF
-  #!/bin/bash
-  sudo yum install -y squid -y
+#!/bin/bash
+set -e
+yum install -y squid
   
-  cat > /etc/squid/squid.conf <<EOL
-  acl localnet src 10.0.0.0/8
-  http_access allow localnet
-  http_port 3128
-  EOL
-  
-  sudo systemctl enable squid
-  sudo systemctl restart squid
-  EOF
+cat > /etc/squid/squid.conf <<EOL
+acl localnet src 10.0.0.0/8
+http_access allow localnet
+http_port 3128
+EOL
+ 
+systemctl enable squid
+systemctl restart squid
+EOF
 
 
 }
@@ -56,6 +59,8 @@ resource "aws_instance" "qp_instance" {
     volume_type = "gp3"     # 일반 SSD (필요 시 gp3 등으로 변경 가능)
     delete_on_termination = true
   }
+#user_data.sh.tpl파일 참조
+#docker설치 및 docker proxy 설정
   user_data = templatefile("${path.module}/user_data.sh.tpl" , {bastion_ip = aws_instance.bastion_instance.private_ip
   })
 
