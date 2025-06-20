@@ -33,6 +33,10 @@ output "bastion_ec2_id" {
   value = module.instance.bastion_ec2_id
 }
 
+output "bastion_private_ip" {
+  value = module.instance.bastion_private_ip
+}
+
 output "cidr_block" {
   value = module.vpc.cidr_block
 }
@@ -40,6 +44,7 @@ output "cidr_block" {
 output "qp_id" {
   value = module.instance.qp_instance_id
 }
+
 
 /*
 # region 출력
