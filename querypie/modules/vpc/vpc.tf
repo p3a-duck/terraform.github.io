@@ -70,6 +70,7 @@ resource "aws_route_table_association" "public" {
 	route_table_id = aws_route_table.public.id
 }
 
+
 #create priv route_table
 #routing table id = rtb-045759e0b6ec9b5da
 resource "aws_route_table" "private" {
@@ -79,7 +80,7 @@ resource "aws_route_table" "private" {
 		}
 }
 
-
+/*
 #add private route to igw  임시
 resource "aws_route" "private_igw" {
 		route_table_id	= aws_route_table.private.id
@@ -88,7 +89,7 @@ resource "aws_route" "private_igw" {
 
 }
 
-
+*/
 #craete priv route_table_association
 resource "aws_route_table_association" "private" {
 	count = length(var.availability_zones)
