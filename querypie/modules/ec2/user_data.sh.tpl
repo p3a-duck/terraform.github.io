@@ -11,5 +11,8 @@
  Environment="HTTP_PROXY=http://${bastion_ip}:3128/"
  Environment="HTTPS_PROXY=http://${bastion_ip}:3128/"
  Environment="NO_PROXY=localhost,127.0.0.1"
- EOT
+EOT
 
+systemctl daemon-reload
+systemctl enable docker
+systemctl restart docker
