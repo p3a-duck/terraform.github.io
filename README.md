@@ -42,7 +42,7 @@ This github repo is basic architecture for querypie
   - DB Sync Role
 
 
-### 사용 방법
+### 🗝️  사용 방법
 1. keypair 변경방법
   - /module/ec2/instance.tf
     - key_name 변경 (ex, key_name = "keyname")
