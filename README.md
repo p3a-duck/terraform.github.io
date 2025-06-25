@@ -52,4 +52,4 @@ This github repo is basic architecture for querypie
 3. 쿼리파이 설치 방법
   - 쿼리파이 라이선스 업로드 (쿼리파이 서버)
   - poc_install 실행
-    - poc_install <version>
+    - poc_install <<version>>
