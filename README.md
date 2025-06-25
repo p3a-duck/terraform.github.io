@@ -54,4 +54,4 @@ This github repo is basic architecture for querypie
   
   - poc_install 실행
     - `poc_install <version>`
-      - e.g /home/ec2-user/poc_install 10.2.4
+      - e.g., /home/ec2-user/poc_install 10.2.4
