@@ -51,5 +51,7 @@ This github repo is basic architecture for querypie
     - 인스턴스 생성시 설정한 키 사용(1번 항목 참조)
 3. 쿼리파이 설치 방법
   - 쿼리파이 라이선스 업로드 (쿼리파이 서버)
+  
   - poc_install 실행
-    - poc_install <<version>>
+    - `poc_install <version>`
+      - e.g /home/ec2-user/poc_install 10.2.4
