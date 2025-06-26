@@ -3,7 +3,7 @@ echo "proxy = http://${bastion_ip}:3128" >> /home/ec2-user/.curlrc
 chown ec2-user:ec2-user /home/ec2-user/.curlrc
 echo "proxy=http://${bastion_ip}:3128" >> /etc/dnf/dnf.conf
 
-sleep 40 
+sleep 80 
 
 log="/home/ec2-user/count.i"
 echo "START USERDATA" >> "$log"
@@ -12,12 +12,12 @@ for i in {1..5}; do
   echo "🌐 [패키지 다운로드 카운트 $i] downloading script..." >> "$log"
   curl --proxy "http://${bastion_ip}:3128" -fL https://raw.githubusercontent.com/querypie/tpm/refs/heads/main/poc-install/poc-install.sh -o /home/ec2-user/poc-install.sh
   exit_code=$?
-  echo "코드 반환: $exit_code" >> "$log"
+  echo "🚫exit code: $exit_code" >> "$log"
 
   if [ $exit_code -eq 0 ]; then
     echo "✅ $i 번째 다운로드 성공" >> "$log"
     chmod +x /home/ec2-user/poc-install.sh
-    echo "❗️Usage: poc-install.sh <version> >> "$log"
+    echo "❗️Usage: poc-install.sh <version>" >> "$log"
     break
   else
     echo "❌ $i 번째 다운로드 실패 " >> "$log"
