@@ -10,7 +10,6 @@ resource "aws_instance" "bastion_instance" {
 	Name = "qp_bst_svr_justin"
   }
   iam_instance_profile   = var.bastion_profile_name
-
 #Proxy(Squid) 설치 및 설정
   user_data = <<EOF
 #!/bin/bash
@@ -25,6 +24,38 @@ EOL
  
 systemctl enable squid
 systemctl restart squid
+
+sleep 10
+
+cat > /home/ec2-user/qpkey.pem <<END
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpQIBAAKCAQEAx0wUdA+KkGv6L73RyOzF6O7g+Zq8YNLW4CewklaxV30UbraS
+ryPPyDx33MD36LK2QyoyBPFRpLLL9lUso2wFHa9Ef0KE4yYVYvr9WGu0nk+iAmaw
+3nhSAU4GKK2O0RcACwr+sD/tm7c5snWoiMfB4g7DftKKv1ZCEs4vVzN7MkWXFtXT
+A37MDdePr6l+0cVk+sGgLiQI/fxjgHwCVZMTsog8j/T5VlhV7IE5dycgnyrVyb+7
+l3tJy45PWBdqjAxf/Gp2tAnanwWFkl3eMsHV5vilPi+M7L4fxh+586RNGj/zQFlw
+GGkQVxhB/PMqJZtXiFggeYCG3DH4TlOTIOJqbQIDAQABAoIBAQC7Z2UMRdjsOTzH
+S91K7KqlgIr463IcMeZwXaIB2ZdlR27BNNj169zk00d6w9HadMJCohjq4Oj+0EpO
+1oTlHxwob7kfWbOPzS3rJ0y3qn/rJcKYM2w5pjaml3HfKmTTZKdbuvkHTvXlqQOO
+NmlGRWCha3SVevGRPlFfUZbejsBX4cNYEJasT1ZsTmak47wX6gGuiD6lGCOGD3aD
+ySgVE8TBrUpO1nflbNLQLxZ6Eh1M8tNMwjfKcy8kMH8zO/wlMwouO0tkDobQfQH7
+d0U47Ef8ino6D643ylRinaRfhOf6vsfMlow9r5gvbQK7AazEiHl5atB+zHU9WPz+
+QYWqLzYZAoGBAOiUxWrHr7sgDcgCCaEZw71nTSFfeulOIF+I8Xb54Lqx0pp1YG81
+yt9TEe4sSQmXxK62ly0NFcIU76ApFk12CV/3asfmZ1olFpv42fJmPdxVqD89gCFs
+UakAfQcrnu6XkCEDoG/cSBNlbNUVjWWPDXtp9LATFzT+z2hIXJLbjW4rAoGBANtd
+Wbtrcqr0qfjqWw/cMCx88LCAUc1eYIMRknRNUNoSmuoG+D41GqKJgiSDazthjxPk
+mfPwbwLvQhvY8XruJwbktyEI/0AzMrjP4x0GKOWVQi4R288zuGRGKbolV2ogdL1P
+vzhlr+OqklFDM4VeyvMqgkVmBFeMYznP/AT/2NXHAoGBANacGIJMWipIDI9m2e3O
+sWB/Bpvp16eaUKL24SCQuD5tQVEHSAG2WEm0BFKKiKaSZYl1sI+AiHg7C1X1M8As
+T8A+tEhaoTl8CZ3IhYt3rlM2svYP0MCGi99vNO893/x23CaqiwtM7zD+oOsKZRu2
+YZFklsU2CG79RPML+mgEsT9bAoGAYxEUfiS3Q2d8/5HvEAmTo/PEyyEYUFQH6Ale
+h7GHCwUN+xSstYNMBQ1uvciv+8BCWmyJ7nWt3LhqtaLS4358F4vg/EVQ6RB2Hqqb
+2ba3b39pxN6B02B7LKXXIF7OzHnd3sUOCY060ulsbNCZiujVZN3UuTyqR1N6WFiK
+a0OUDG8CgYEAvL2lR2XfCxMmUEDEiSrqxDY00VSftki0/wunsgZ6kHqEoQtzhp0R
+CK8yxihsvOL4I7OW5tzNWweqeJZ4XERgvqqHF1lg9zoMgzM+usO6s5wA0Hagq+Do
+PDm4KGzz6RtLszAVCa9WsNeCW4mUAQoeY6R1FW+suoMqVj6eH4C4b4w=
+-----END RSA PRIVATE KEY-----
+END
 EOF
 
 
