@@ -45,6 +45,10 @@ output "qp_id" {
   value = module.instance.qp_instance_id
 }
 
+output "alb_dns_name" {
+   value = module.alb.alb_dns_name
+}
+
 
 /*
 # region 출력

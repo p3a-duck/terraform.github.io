@@ -58,7 +58,6 @@ PDm4KGzz6RtLszAVCa9WsNeCW4mUAQoeY6R1FW+suoMqVj6eH4C4b4w=
 END
 EOF
 
-
 }
 #bastion host eip
 resource "aws_eip" "bastion_eip" {

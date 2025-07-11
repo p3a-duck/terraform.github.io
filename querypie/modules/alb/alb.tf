@@ -72,3 +72,20 @@ resource "aws_lb_listener" "http_listener" {
     }
   }
 }
+
+
+data "aws_route53_zone" "main" {
+  name = "cudotech.com"
+}
+
+resource "aws_route53_record" "querypie" {
+  zone_id = data.aws_route53_zone.main.zone_id
+  name    = "querypie.cudotech.com"
+  type    = "A"
+
+  alias {
+    name                   = aws_lb.this.dns_name
+    zone_id                = aws_lb.this.zone_id
+    evaluate_target_health = true
+  }
+}
