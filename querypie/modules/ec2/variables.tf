@@ -1,6 +1,7 @@
-variable "region_apse1" {
-  default = "ap-southeast-1"
-}
+#삭제 예정
+#variable "region_apse1" {
+#  default = "ap-southeast-1"
+#}
 
 variable "bastion_eip_id" {
   description = "Name tag for the EIP"

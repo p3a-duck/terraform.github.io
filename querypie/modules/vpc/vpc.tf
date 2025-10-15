@@ -1,3 +1,22 @@
+data "aws_region" "current"{}
+
+locals {
+  _region_parts = split("-",data.aws_region.current.name)
+  _mid_map = {
+    northeast = "ne"
+    southeast = "se"
+    southwesh = "sw"
+    northwest = "nw"
+    east = "e"
+    west = "w"
+    south = "s"
+    north = "n"
+    central = "c"
+  }
+  region_short = "${local._region_parts[0]}${lookup(local._mid_map, local._region_parts[1], local._region_parts[1])}${local._region_parts[2]}"
+}
+
+
 #create vpc
 #vpc id = vpc-0983fe081bd19d9d6
 resource "aws_vpc" "main" {
@@ -19,21 +38,21 @@ resource "aws_subnet" "priv_sbn" {
 	availability_zone = element(var.availability_zones, count.index)
 
 	tags = {
-                Name = "qp-pri-sbn-apse1-${substr(element(var.availability_zones, count.index), -1, 1)}"
+                Name = "qp-pri-sbn-${local.region_short}-${substr(element(var.availability_zones, count.index), -1, 1)}"
         }
 }
 
 #create public subnet (10.0.10.0/24, 10.0.16.0/24)
 #subnetid = subnet-0851c7738e573371e
 resource "aws_subnet" "pub_sbn" {
-	count = length(var.availability_zones)	
+    count = length(var.availability_zones)	
     vpc_id  = aws_vpc.main.id
     cidr_block  = "10.${var.cidr_numeral}.${var.cidr_numeral_public[count.index]}.0/22"
 
-	availability_zone = element(var.availability_zones, count.index)
+    availability_zone = element(var.availability_zones, count.index)
 
-        tags = {
-                Name = "qp-pub-sbn-apse1-${substr(element(var.availability_zones, count.index), -1, 1)}"
+    tags = {
+        Name = "qp-pub-sbn-${local.region_short}-${substr(element(var.availability_zones, count.index), -1, 1)}"
         }
 }
 

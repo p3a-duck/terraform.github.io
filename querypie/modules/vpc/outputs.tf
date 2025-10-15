@@ -13,9 +13,9 @@ output "priv_sbn_ids" {
 }
 
 # region 출력
-output "aws_region" {
-  value = var.aws_region
-}
+#output "region" {
+#  value = var.region
+#}
 
 output "cidr_block" {
   value = aws_vpc.main.cidr_block 

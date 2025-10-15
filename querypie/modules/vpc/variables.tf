@@ -3,16 +3,16 @@ variable  "cidr_numeral" {
     default = "0"
 }
 
-variable  "aws_region" {
-    description = "tfvars code file apse2"
-}
+#variable  "aws_region" {
+#    description = "tfvars code file apse2"
+#}
 
 variable  "vpc_name" {
     description = "The name of the VPC"
 }
 
 variable  "availability_zones" {
-    description = "tfcars code file apse1a"
+    description = "az"
 }
 
 variable "cidr_numeral_private" {

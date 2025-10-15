@@ -50,9 +50,9 @@ output "alb_dns_name" {
 }
 
 
-/*
+
 # region 출력
-output "aws_region" {
-  value = var.aws_region
+output "region" {
+  value = var.region
 }
-*/
+

@@ -1,4 +1,4 @@
-variable "region_apse1" {
+variable "region" {
   default = "ap-southeast-1"
 }
 
@@ -19,14 +19,7 @@ variable "vpc_name" {
 }
 
 
-variable "aws_region" {
-  description = "tfvars code file apse1"
-  default     = "ap-southeast-1"
-}
-
-
 variable "availability_zones" {
-  description = "tfvars code file apse1a"
   default     = ["ap-southeast-1a", "ap-southeast-1c"]
 }
 
